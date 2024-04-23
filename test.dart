@@ -101,6 +101,45 @@ void main() {
     print('Running Do While $number');
   } while (number < 10);
 
+  /// 예외 처리 Exception
+
+  int? number1;
+  int number2 = 10;
+
+  // try {
+  //   // 예외가 발생할 것으로 예상 되는 코드
+  //   print(10 ~/ 0);
+  // } catch(error, stack) {
+  //   // 예외가 발생 했을 때 실행 하고자 하는 코드
+  //   print(error);
+  //   print(stack);
+  // } finally {
+  //   // 예외가 발생 하든 하지 않든 try / catch 문 이후에 실행 하고자 하는 코드
+  //   print('얘는 무조건 실행');
+  // }
+
+  try {
+    // print(number2 ~/ 0);
+    // print(number1!);
+    throw Exception('Unknown Error!');
+  } on UnsupportedError catch(e, s) {
+    print(e.stackTrace);
+    print('~/ 해당 연산자는 0으로 나눌 수 없습니다.');
+  } on TypeError catch(e, s) {
+    print(e.stackTrace);
+    print('Null 값이 참조 되었습니다.');
+  } catch (e,s) {
+    // print('모르는 에러가 발생했습니다.');
+    rethrow;
+  }
+
+
+  // print(10 / 0); // Infinity
+  // print(10 ~/ 0); // Unhandled exception: IntegerDivisionByZeroException
+  print('위 에러 때문에 동작 하지 않음.');
+
+
+
 }
 
 int add(int a, int b) {
